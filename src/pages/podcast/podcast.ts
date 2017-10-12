@@ -22,4 +22,8 @@ export class PodcastPage {
     console.log('ionViewDidLoad PodcastPage');
   }
 
+  showRecommended() {
+    
+  }
+
 }

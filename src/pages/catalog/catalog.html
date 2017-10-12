@@ -7,7 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Catalog</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="showRecommended()">推荐</button>
+    </ion-buttons>
+    <ion-title>分类</ion-title>
+    <ion-buttons end>
+      <button ion-button>播放中&nbsp;<ion-icon name="arrow-forward"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

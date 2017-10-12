@@ -22,4 +22,8 @@ export class CatalogPage {
     console.log('ionViewDidLoad CatalogPage');
   }
 
+  showRecommended() {
+    
+  }
+
 }
