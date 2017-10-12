@@ -12,10 +12,50 @@
       <button ion-button>播放中&nbsp;<ion-icon name="arrow-forward"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
-
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="搜索"></ion-searchbar>
+  </ion-toolbar>
+  <div class="search-types">
+    <ion-segment [(ngModel)]="searchType" color="light-gray">
+      <ion-segment-button value="hot">
+        热门搜索
+      </ion-segment-button>
+      <ion-segment-button value="history">
+        历史搜索
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <div [ngSwitch]="searchType">
+    <ion-list *ngSwitchCase="'hot'">
+      <ion-item *ngFor="let item of [1,2,3]" class="keyword-row">
+        <ion-row>
+          <ion-col col-4>
+            <p>郭德纲</p>
+          </ion-col>
+          <ion-col col-4>
+            <p>三体</p>
+          </ion-col>
+          <ion-col col-4>
+            <p>播音：艾宝良</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'history'">
+      <ion-item class="keyword-row">
+        <ion-row>
+          <ion-col col-4>
+            <p>神探狄仁杰</p>
+          </ion-col>
+          <ion-col col-4>
+            <p>天才透视神医</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
