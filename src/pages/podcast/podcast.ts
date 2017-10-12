@@ -15,11 +15,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PodcastPage {
 
+  dataList: any = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PodcastPage');
+    // console.log('ionViewDidLoad PodcastPage');
+    this.dataList = [
+      {
+        icon: 'assets/images/icon-1.jpg',
+        name: 'CNR中国交通广播',
+        desc: ''
+      },
+      {
+        icon: 'assets/images/icon-2.jpg',
+        name: 'CNR中国之声',
+        desc: ''
+      },
+      {
+        icon: 'assets/images/icon-3.jpg',
+        name: 'CNR经济之声',
+        desc: ''
+      },
+    ];
   }
 
   showRecommended() {

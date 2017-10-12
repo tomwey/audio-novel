@@ -37,6 +37,15 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let item of catalogList">
+        <ion-thumbnail item-left>
+          <img [src]="item.icon">
+        </ion-thumbnail>
+        <h2>{{item.name}}</h2>
+        <p>{{item.author}}</p>
+        <p>{{item.state}}</p>
+      </button>
+    </ion-list>
 </ion-content>
