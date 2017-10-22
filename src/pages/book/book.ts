@@ -22,7 +22,7 @@ export class BookPage {
   dataType: string = 'chapter';
   chapters: any = [];
   brief: string = '';
-
+  otherSources: any = [];
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private api: ApiService,
@@ -44,6 +44,29 @@ export class BookPage {
     }
   }
 
+  segmentChanged(ev): void {
+    // console.log(ev);
+    // console.log(this.dataType);
+    if (this.dataType === 'other') {
+      this.loadOtherResources();
+    }
+  }
+
+  loadOtherResources(): void {
+    this.tool.showLoading('加载中...');
+
+    this.api.get('you/getSource.php', this.bookItem)
+      .then(data => {
+        // console.log(data);
+        this.otherSources = data.sourceArr;
+        this.tool.hideLoading();
+      })
+      .catch(error => {
+        console.log(error);
+        this.tool.hideLoading();
+      })
+  }
+
   refresh(): void {
     this.tool.showLoading('加载中...');
 
@@ -55,6 +78,14 @@ export class BookPage {
         console.log(data);
         this.chapters = data.partArr[0].chapterArr;
         this.brief = data.brief;
+
+        this.bookItem.bookName = data.bookName;
+        this.bookItem.brief = data.brief;
+        this.bookItem.chapterpre = data.chapterpre;
+        this.bookItem.href = data.href;
+        this.bookItem.time2 = data.time;
+        this.bookItem.ts = data.ts;
+
         this.tool.hideLoading();
       })
       .catch(error => {

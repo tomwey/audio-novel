@@ -26,21 +26,20 @@
         <button ion-button small>收藏</button>
         <button ion-button small>批量下载</button>
       </ion-item>
-      <div padding>
-          <ion-segment [(ngModel)]="dataType" color="light-gray">
-              <ion-segment-button value="chapter">
-                章节
-              </ion-segment-button>
-              <ion-segment-button value="brief">
-                简介
-              </ion-segment-button>
-              <ion-segment-button value="other">
-                其他资源
-              </ion-segment-button>
-            </ion-segment>
-          </div>
     </ion-list>
-    
+    <ion-toolbar>
+      <ion-segment [(ngModel)]="dataType" color="light-gray" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="chapter">
+          章节
+        </ion-segment-button>
+        <ion-segment-button value="brief">
+          简介
+        </ion-segment-button>
+        <ion-segment-button value="other">
+          其他资源
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
   </div>
 </ion-header>
 
@@ -66,11 +65,18 @@
         </div>
       </ion-list>
 
-      <ion-list *ngSwitchCase="'other'">
-        <div class="other-resource">
-          
-        </div>
-      </ion-list>
+      <div *ngSwitchCase="'other'">
+        <ion-list>
+          <button ion-item *ngFor="let source of otherSources">
+            <ion-thumbnail item-left>
+              <img [src]="source.src">
+            </ion-thumbnail>
+            <h2>{{source.title}}</h2>
+            <p>{{source.name}}</p>
+            <p>{{source.time}}</p>
+          </button>
+        </ion-list>
+      </div>
       
     </div>
 </ion-content>

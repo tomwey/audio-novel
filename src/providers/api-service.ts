@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
   for more info on providers and Angular 2 DI.
 */
 // 正式服务器和账号
-const API_HOST: string = "http://14.33.133.79";//"http://14.33.133.79";
+const API_HOST: string = "http://14.33.133.104";//"http://14.33.133.79";
 const API_KEY:  string = "3bde7fa81ca14a5d9f829bcae9c72c67";
 
 // 测试账号和测试服务器
