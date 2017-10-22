@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BooksService } from "../../providers/books-service";
+import { ToolService } from "../../providers/tool-service";
 
 /**
  * Generated class for the CatalogPage page.
@@ -16,30 +18,71 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class CatalogPage {
   
   catalogList: any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  hasMore: boolean = true;
+
+  requestParams: any = { server: '服务器4', category: '都市传说', order: '点击排行', page: 1, ungz: 1 };
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private books: BooksService,
+    private tool:  ToolService,
+    ) {
   }
 
   ionViewDidLoad() {
-    this.catalogList = [
-      {
-        icon: 'assets/images/icon-1.jpg',
-        name: '凡人修仙传',
-        author: '大灰狼',
-        state: '已完结：全集'
-      },
-      {
-        icon: 'assets/images/icon-2.jpg',
-        name: '仙逆',
-        author: '朱宇',
-        state: '已完结：全集'
-      },
-      {
-        icon: 'assets/images/icon-3.jpg',
-        name: '百炼成仙',
-        author: '皖宣灿灿',
-        state: '最新章节：连载4193集'
-      },
-    ];
+    this.loadData();
+  }
+
+  loadData(): Promise<any> {
+    if (this.requestParams.page === 1) {
+      this.tool.showLoading('加载中...');
+    }
+    console.log(`page:${this.requestParams.page}`);
+
+    return new Promise(resolve => {
+      this.books.getCategories(this.requestParams)
+      .then(data => {
+        console.log(data);
+        // alert(data);
+        if (this.requestParams.page === 1) {
+          this.catalogList = data.bookArr;
+        } else {
+          let temp = this.catalogList || [];
+          this.catalogList = temp.concat(data.bookArr);
+        }
+        // console.log(this.catalogList.length);
+
+        this.hasMore = data.bookArr.length == 88;
+
+        resolve(true);
+
+        this.tool.hideLoading();
+      })
+      .catch(error => {
+        console.log(error);
+        // alert(error);
+        resolve(false);
+
+        this.tool.hideLoading();
+      });
+    });
+    
+  }
+
+  doRefresh(e): void {
+    this.requestParams.page = 1;
+
+    this.loadData()
+      .then(data => {
+        e.complete();
+      });
+  }
+
+  doInfinite(e): void {
+    this.requestParams.page ++;
+    this.loadData()
+      .then(data => {
+        e.complete();
+      });
   }
 
   showRecommended() {
