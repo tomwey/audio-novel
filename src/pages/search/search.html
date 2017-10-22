@@ -13,7 +13,7 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar>
-    <ion-searchbar (ionInput)="getItems($event)" placeholder="搜索"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="keyword" placeholder="搜索"></ion-searchbar>
   </ion-toolbar>
   <div class="search-types">
     <ion-segment [(ngModel)]="searchType" color="light-gray">
@@ -42,7 +42,7 @@
     <ion-list *ngSwitchCase="'hot'">
         <ion-row class="keyword-row">
           <ion-col col-4 *ngFor="let item of hotKeywords">
-            <p>{{item}}</p>
+            <p tappable (tap)="selectKeyword(item)">{{item}}</p>
           </ion-col>
         </ion-row>
     </ion-list>
@@ -50,12 +50,9 @@
     <ion-list *ngSwitchCase="'history'">
       <!-- <ion-item class="keyword-row"> -->
         <ion-row class="keyword-row">
-          <ion-col col-4>
-            <p>神探狄仁杰</p>
-          </ion-col>
-          <ion-col col-4>
-            <p>天才透视神医</p>
-          </ion-col>
+            <ion-col col-4 *ngFor="let item of searchHistories">
+              <p tappable (tap)="selectKeyword(item)">{{item}}</p>
+            </ion-col>
         </ion-row>
       <!-- </ion-item> -->
     </ion-list>

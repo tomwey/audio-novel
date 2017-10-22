@@ -18,7 +18,7 @@ import { ToolService } from '../../providers/tool-service';
 export class SearchPage {
 
   searchType: string = 'hot';
-
+  keyword: string = '';
   hotKeywords: any = [];
   searchHistories: any = [];
   constructor(public navCtrl: NavController, 
@@ -31,6 +31,11 @@ export class SearchPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad SearchPage');
     this.loadHotKeywords();
+  }
+
+  selectKeyword(kw): void {
+    console.log(kw);
+    this.keyword = kw;
   }
 
   loadHotKeywords(): Promise<any> {
