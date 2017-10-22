@@ -28,26 +28,28 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-round-down-outline"
+      pullingText="下拉刷新"
+      refreshingSpinner="crescent" 
+      refreshingText="加载中...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <div [ngSwitch]="searchType">
+
     <ion-list *ngSwitchCase="'hot'">
-      <ion-item *ngFor="let item of [1,2,3]" class="keyword-row">
-        <ion-row>
-          <ion-col col-4>
-            <p>郭德纲</p>
-          </ion-col>
-          <ion-col col-4>
-            <p>三体</p>
-          </ion-col>
-          <ion-col col-4>
-            <p>播音：艾宝良</p>
+        <ion-row class="keyword-row">
+          <ion-col col-4 *ngFor="let item of hotKeywords">
+            <p>{{item}}</p>
           </ion-col>
         </ion-row>
-      </ion-item>
     </ion-list>
-  
+    
     <ion-list *ngSwitchCase="'history'">
-      <ion-item class="keyword-row">
-        <ion-row>
+      <!-- <ion-item class="keyword-row"> -->
+        <ion-row class="keyword-row">
           <ion-col col-4>
             <p>神探狄仁杰</p>
           </ion-col>
@@ -55,7 +57,7 @@
             <p>天才透视神医</p>
           </ion-col>
         </ion-row>
-      </ion-item>
+      <!-- </ion-item> -->
     </ion-list>
   </div>
 </ion-content>

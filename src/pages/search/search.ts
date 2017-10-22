@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service';
+import { ToolService } from '../../providers/tool-service';
 
 /**
  * Generated class for the SearchPage page.
@@ -17,11 +19,43 @@ export class SearchPage {
 
   searchType: string = 'hot';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  hotKeywords: any = [];
+  searchHistories: any = [];
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private api: ApiService,
+              private tool: ToolService,
+            ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+    // console.log('ionViewDidLoad SearchPage');
+    this.loadHotKeywords();
+  }
+
+  loadHotKeywords(): Promise<any> {
+
+    return new Promise((resolve => {
+      this.tool.showLoading('加载中...');
+      this.api.get('you/getHotKey.php', {ungz: 1})
+        .then(data => {
+          this.tool.hideLoading();
+          console.log(data);
+          this.hotKeywords = data.hotKeyArr;
+          resolve(true);
+        })
+        .catch(error => {
+          this.tool.hideLoading();
+          resolve(false);
+        })
+    }));
+  }
+
+  doRefresh(refresher): void {
+    this.loadHotKeywords().then(data => {
+      if (refresher)
+        refresher.complete();
+    })
   }
 
   getItems(event): void {
