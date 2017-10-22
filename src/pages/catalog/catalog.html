@@ -49,7 +49,7 @@
   </ion-refresher>
 
   <ion-list [virtualScroll]="catalogList" approxItemHeight="80px">
-    <button ion-item *virtualItem="let item">
+    <button ion-item *virtualItem="let item" (click)="gotoBook(item)">
       <ion-thumbnail item-left>
         <!-- <img [src]="item.src"> -->
         <!-- <ion-img src="{{item.src}}"></ion-img> -->

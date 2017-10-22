@@ -32,6 +32,10 @@ export class CatalogPage {
     this.loadData();
   }
 
+  gotoBook(book): void {
+    this.navCtrl.push('BookPage', book);
+  }
+
   loadData(): Promise<any> {
     if (this.requestParams.page === 1) {
       this.tool.showLoading('加载中...');
