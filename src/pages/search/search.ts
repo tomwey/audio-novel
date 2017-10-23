@@ -38,6 +38,10 @@ export class SearchPage {
     this.keyword = kw;
   }
 
+  startSearch(kw): void {
+    console.log(kw);
+  }
+
   loadHotKeywords(): Promise<any> {
 
     return new Promise((resolve => {

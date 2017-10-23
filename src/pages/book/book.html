@@ -46,7 +46,7 @@
 <ion-content>
     <div [ngSwitch]="dataType">
         
-      <ion-list *ngSwitchCase="'chapter'">
+      <div [hidden]="dataType !== 'chapter'">
         <ion-list [virtualScroll]="chapters" approxItemHeight="50px">
           <ion-item *virtualItem="let item">
             <h2>{{item.chapterTitle}}</h2>
@@ -57,7 +57,7 @@
             </ion-note>
           </ion-item>
         </ion-list>
-      </ion-list>
+      </div>
       
       <ion-list *ngSwitchCase="'brief'">
         <div class="brief" padding>

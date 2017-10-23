@@ -36,7 +36,7 @@ import { BooksService } from '../providers/books-service';
     IonicModule.forRoot(MyApp, {
       // preloadModules: true,
       mode: 'ios',
-      // backButtonText: '',
+      backButtonText: '返回',
       tabsHideOnSubPages: true,
       // pageTransition: 'ios'
     })

@@ -29,12 +29,12 @@ export class BookPage {
               private tool: ToolService,
     ) {
       this.bookItem = this.navParams.data;
-      console.log(this.bookItem);
+      // console.log(this.bookItem);
   }
 
-  ionViewDidLoad() {
+  // ionViewDidLoad() {
     
-  }
+  // }
 
   ionViewDidEnter() {
     if (!this.firstLoaded) {
@@ -49,7 +49,11 @@ export class BookPage {
     // console.log(this.dataType);
     if (this.dataType === 'other') {
       this.loadOtherResources();
+    } else if (this.dataType === 'chapter') {
+      // this.chapters = this.bookItem.chapters;
     }
+
+    console.log(this.chapters);
   }
 
   loadOtherResources(): void {
@@ -85,6 +89,8 @@ export class BookPage {
         this.bookItem.href = data.href;
         this.bookItem.time2 = data.time;
         this.bookItem.ts = data.ts;
+
+        // this.bookItem.chapters = data.partArr[0].chapterArr;
 
         this.tool.hideLoading();
       })
