@@ -27,7 +27,7 @@ export class SettingPage {
   gotoFaq() {
     this.app.getRootNavs()[0].push('BrowserPage', { 
       title: '常见问题',
-      url: 'https://www.baidu.com/'});
+      url: 'http://www.baidu.com/'});
   }
 
 }

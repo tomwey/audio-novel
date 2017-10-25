@@ -37,7 +37,7 @@ import { BooksService } from '../providers/books-service';
       // preloadModules: true,
       mode: 'ios',
       backButtonText: '返回',
-      tabsHideOnSubPages: true,
+      // tabsHideOnSubPages: true,
       // pageTransition: 'ios'
     })
   ],

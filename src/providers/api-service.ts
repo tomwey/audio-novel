@@ -33,7 +33,7 @@ export class ApiService {
     let url = API_HOST + '/' + uri;
 
     // 获取时间戳
-    let i = new Date().getTime();
+    // let i = new Date().getTime();
 
     // 组装参数
     let searchParams = new URLSearchParams();

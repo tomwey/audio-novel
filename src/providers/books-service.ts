@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api-service';
-import { ToolService } from './tool-service'; 
+// import { ToolService } from './tool-service'; 
 
 /*
   Generated class for the ToolService provider.
@@ -13,7 +13,7 @@ export class BooksService {
   
   constructor(
     private api: ApiService,
-    private tool: ToolService,
+    // private tool: ToolService,
   ) {
     // console.log('Hello ToolService Provider');
   }
