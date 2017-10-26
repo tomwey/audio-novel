@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service';
 import { ToolService } from '../../providers/tool-service';
 
@@ -25,6 +25,7 @@ export class SearchPage {
               public navParams: NavParams,
               private api: ApiService,
               private tool: ToolService,
+              private app: App,
             ) {
   }
 
@@ -39,8 +40,13 @@ export class SearchPage {
   }
 
   startSearch(kw): void {
-    console.log(kw);
+    // console.log(kw);
+    this.app.getRootNavs()[0].push('SearchResultPage', { keyword: kw });
   }
+
+  // onCancel(ev) {
+
+  // }
 
   loadHotKeywords(): Promise<any> {
 

@@ -35,18 +35,18 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons start>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="play()">
         &nbsp;<ion-icon name="ios-play-outline"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="doFavorite()">
         <ion-icon name="ios-star-outline"></ion-icon>&emsp;
       </button>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="openVolume()">
         <ion-icon name="ios-volume-up-outline"></ion-icon>&emsp;
       </button>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="openSettings()">
         <ion-icon name="ios-settings-outline"></ion-icon>&nbsp;
       </button>
     </ion-buttons>

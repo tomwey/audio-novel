@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { DomSanitizer } from "@angular/platform-browser";
 
 /**
@@ -28,6 +28,7 @@ export class PodcastDetailPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private sanitizer: DomSanitizer,
+    private app: App,
   ) {
     let browser = this.navParams.data;
     if (browser) {
@@ -103,6 +104,22 @@ export class PodcastDetailPage {
       this.browser.title = title;
       this.browser.secUrl = url;
     }, 10);
+  }
+
+  play() {
+
+  }
+
+  doFavorite() {
+
+  }
+
+  openVolume() {
+
+  }
+
+  openSettings() {
+    this.app.getRootNavs()[0].push('SettingPage');
   }
 
 }
