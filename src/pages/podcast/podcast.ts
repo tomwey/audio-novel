@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { PodCastsService } from "../../providers/podcast-service";
 import { ToolService } from "../../providers/tool-service";
 
@@ -25,6 +25,7 @@ export class PodcastPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private podcasts: PodCastsService,
     private tool:  ToolService,
+    private app: App,
   ) {
   }
 
@@ -46,12 +47,11 @@ export class PodcastPage {
         // alert(data);
         data.bookArr.forEach(function (e) {
             var src = 'assets/images/icon-1.jpg,,'+e.src
-            try{
-              var splits = src.split(',,', 2)
-              e.src = splits[splits.length - 1]
-            }catch(exp){
-              e.src='http://pic.qingting.fm/2017/0208/20170208175843902.jpg'
-            }
+            var splits = src.split(',,', 3)
+            e.src = splits[splits.length - 1]
+            if (e.src == 'undefined') {
+              e.src = 'assets/images/icon-1.jpg'
+            }           
         });
         if (this.requestParams.page === 1) {
           this.dataList = data.bookArr;
@@ -96,8 +96,12 @@ export class PodcastPage {
   }
 
   gotoPodcast(item): void{
-
-
+    if (item.href == null){
+      item.href = item.chapterUrlArr[0]
+    }
+    this.app.getRootNavs()[0].push('BrowserPage', { 
+      title: item.title,
+      url: item.href});
   }
 
   showRecommended() {

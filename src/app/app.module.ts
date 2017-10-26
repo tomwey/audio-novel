@@ -60,7 +60,7 @@ import { PodCastsService } from '../providers/podcast-service';
     Constants,
     ToolService,
     BooksService,
-	PodCastsService,
+	  PodCastsService,
   ]
 })
 export class AppModule {}
