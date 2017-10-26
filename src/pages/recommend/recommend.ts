@@ -39,7 +39,16 @@ export class RecommendPage {
   }
 
   gotoBook(book): void {
-    this.app.getRootNavs()[0].push('BookPage', book);
+    if (this.requestParams.category === '电台') {
+      if (book.href == null){
+        book.href = book.chapterUrlArr[0]
+      }
+      this.app.getRootNavs()[0].push('BrowserPage', { 
+        title: book.title,
+        url: book.href});
+    } else if (this.requestParams.category === '分类') {
+      this.app.getRootNavs()[0].push('BookPage', book);
+    }
   }
 
   loadData(): Promise<any> {
