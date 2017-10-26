@@ -44,39 +44,31 @@
 </ion-header>
 
 <ion-content>
-    <div [ngSwitch]="dataType">
-        
-      <div [hidden]="dataType !== 'chapter'">
-        <ion-list [virtualScroll]="chapters" approxItemHeight="50px">
-          <ion-item *virtualItem="let item">
-            <h2>{{item.chapterTitle}}</h2>
-            <ion-note item-right>
-              <button ion-button icon-only clear>
-                <ion-icon name="ios-download-outline"></ion-icon>
-              </button>
-            </ion-note>
-          </ion-item>
-        </ion-list>
-      </div>
-      
-      <ion-list *ngSwitchCase="'brief'">
-        <div class="brief" padding>
-          {{brief}}
-        </div>
-      </ion-list>
 
-      <div *ngSwitchCase="'other'">
-        <ion-list>
-          <button ion-item *ngFor="let source of otherSources">
-            <ion-thumbnail item-left>
-              <img [src]="source.src">
-            </ion-thumbnail>
-            <h2>{{source.title}}</h2>
-            <p>{{source.name}}</p>
-            <p>{{source.time}}</p>
+  <ion-list [hidden]="dataType !== 'chapter'" [virtualScroll]="chapters">
+    <ion-item *virtualItem="let item">
+        <h2>{{item.chapterTitle}}</h2>
+        <ion-note item-right>
+          <button ion-button icon-only clear>
+            <ion-icon name="ios-download-outline"></ion-icon>
           </button>
-        </ion-list>
-      </div>
-      
-    </div>
+        </ion-note>
+      </ion-item>
+  </ion-list>
+
+  <div class="brief" padding *ngIf="dataType === 'brief'">
+    {{brief}}
+  </div>
+
+  <ion-list *ngIf="dataType === 'other'">
+    <button ion-item *ngFor="let source of otherSources">
+      <ion-thumbnail item-left>
+        <img [src]="source.src">
+      </ion-thumbnail>
+      <h2>{{source.title}}</h2>
+      <p>{{source.name}}</p>
+      <p>{{source.time}}</p>
+    </button>
+  </ion-list>
+  
 </ion-content>
