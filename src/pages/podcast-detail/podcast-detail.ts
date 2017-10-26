@@ -119,7 +119,7 @@ export class PodcastDetailPage {
   }
 
   openSettings() {
-    this.app.getRootNavs()[0].push('SettingPage');
+    this.app.getRootNavs()[0].push('SettingPage', { flag: 1 });
   }
 
 }

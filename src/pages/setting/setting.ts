@@ -15,9 +15,11 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 })
 export class SettingPage {
 
+  flag: boolean = false;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
   private app: App) {
+    this.flag = this.navParams.data.flag && this.navParams.data.flag === 1;
   }
 
   ionViewDidLoad() {

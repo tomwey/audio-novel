@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <ion-title>更多</ion-title>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="!flag">
       <button ion-button>播放中&nbsp;<ion-icon name="arrow-forward"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
