@@ -105,7 +105,7 @@ export class PodcastPage {
   }
 
   showRecommended() {
-    
+    this.app.getRootNavs()[0].push('RecommendPage', { server: '推荐', category: '电台', order: '' });
   }
 
 }
