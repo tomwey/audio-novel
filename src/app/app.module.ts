@@ -4,6 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 
+// import { Keyboard } from '@ionic-native/keyboard';
+
 import { HomePage } from '../pages/home/home';
 // import { CatalogPage } from '../pages/catalog/catalog';
 // import { PodcastPage } from '../pages/podcast/podcast';
@@ -55,6 +57,7 @@ import { PodCastsService } from '../providers/podcast-service';
   providers: [
     StatusBar,
     SplashScreen,
+    // Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiService,
     Constants,
