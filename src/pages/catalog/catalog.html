@@ -15,25 +15,35 @@
       <button ion-button>播放中&nbsp;<ion-icon name="arrow-forward"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
-  <div class="dropdown-menu">
+  <!-- <div class="dropdown-menu"> -->
       <ion-row>
         <ion-col col-4>
-          <button ion-button clear small>
-              服务器4&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-          </button>
+          <ion-select [(ngModel)]="requestParams.server">
+              <ion-option value="服务器5">服务器5</ion-option>
+              <ion-option value="服务器4">服务器4</ion-option>
+              <ion-option value="服务器1">服务器1</ion-option>
+              <ion-option value="服务器3">服务器3</ion-option>
+              <ion-option value="服务器6">服务器6</ion-option>
+            </ion-select>
         </ion-col>
         <ion-col col-4>
-          <button ion-button clear small>
-              都市传说&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-          </button>
+          <ion-select [(ngModel)]="requestParams.category">
+              <ion-option value="网络玄幻">网络玄幻</ion-option>
+              <ion-option value="都市传说">都市传说</ion-option>
+              <ion-option value="恐怖悬疑">恐怖悬疑</ion-option>
+              <ion-option value="百家讲坛">百家讲坛</ion-option>
+              <ion-option value="历史军事">历史军事</ion-option>
+              <ion-option value="武侠小说">武侠小说</ion-option>
+            </ion-select>
         </ion-col>
         <ion-col col-4>
-            <button ion-button clear small>
-                点击排行&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-            </button>
-          </ion-col>
+          <ion-select [(ngModel)]="requestParams.order">
+            <ion-option value="点击排行">点击排行</ion-option>
+            <ion-option value="最近更新">最近更新</ion-option>
+          </ion-select>
+        </ion-col>
       </ion-row>
-    </div>
+    <!-- </div> -->
 </ion-header>
 
 
