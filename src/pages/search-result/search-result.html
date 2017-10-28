@@ -10,20 +10,20 @@
     <ion-title>{{keyword}}</ion-title>
   </ion-navbar>
 
-  <div class="dropdown-menu">
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button clear small>
-            资源不限&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button clear small>
-            模糊匹配&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-  </div>
+  <!-- <div class="dropdown-menu"> -->
+      <ion-row>
+          <ion-col col-6>
+            <ion-select [(ngModel)]="requestParams.server" (ionChange)="fetchData($event);">
+              <ion-option value="{{item}}" *ngFor="let item of servers">{{item}}</ion-option>
+            </ion-select>
+          </ion-col>
+          <ion-col col-6>
+            <ion-select [(ngModel)]="requestParams.category" (ionChange)="fetchData($event);">
+              <ion-option value="{{item}}" *ngFor="let item of categories">{{item}}</ion-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+  <!-- </div> -->
 </ion-header>
 
 <ion-content>

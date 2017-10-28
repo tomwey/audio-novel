@@ -21,7 +21,6 @@ export class CatalogPage {
   hasMore: boolean = true;
   filterDic: any = null;
 
-  // loading: boolean = false;
   firstLoaded: boolean = false;
 
   orders: any = [];
@@ -29,6 +28,8 @@ export class CatalogPage {
   categories: any = [];
 
   serverCategories: any = {};
+
+  currentCondition: string = null;
 
   requestParams: any = { server: '', category: '', order: '', page: 1, ungz: 1 };
 
@@ -54,40 +55,30 @@ export class CatalogPage {
       if (key === server) {
         // console.log(111);
         this.categories = this.serverCategories[key];
-        // console.log(this.categories);
         this.requestParams.category = this.categories[0];
-        // console.log(this.requestParams.category);
+
         break;
       }
     }
   }
 
   fetchData(ev): void {
-    // console.log(this.requestParams.order);
-    // console.log(this.requestParams.server);
-    // console.log(this.requestParams.category);
-    // if (!this.firstLoad) {
-      this.requestParams.page = 1;
-      this.loadData();
-    // }
-
+    this.requestParams.page = 1;
+    this.loadData();
   }
 
   loadData(): Promise<any> {
     return new Promise(resolve => {
-      // if (this.loading) {
-      //   resolve(false);
-      //   return;
-      // }
 
-      // this.loading = true;
       if (this.requestParams.page === 1) {
         this.tool.showLoading('加载中...');
       }
 
       this.books.getCategories(this.requestParams)
       .then(data => {
-        console.log(data);
+        // console.log(data);
+        // this.needLoading = true;
+
         // alert(data);
         if (this.requestParams.page === 1) {
           this.catalogList = data.bookArr;
@@ -98,7 +89,7 @@ export class CatalogPage {
           if (!this.firstLoaded) {
             this.firstLoaded = true;
             this.prepareFilterData();
-          }
+          } 
         } else {
           let temp = this.catalogList || [];
           this.catalogList = temp.concat(data.bookArr);
@@ -110,13 +101,19 @@ export class CatalogPage {
         resolve(true);
 
         this.tool.hideLoading();
+
+        // this.loading = false;
       })
       .catch(error => {
+        // this.needLoading = true;
+
         console.log(error);
         // alert(error);
         resolve(false);
 
         this.tool.hideLoading();
+        
+        // this.loading = false;
       });
     });
     

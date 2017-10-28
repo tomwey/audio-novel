@@ -17,8 +17,17 @@ import { ToolService } from '../../providers/tool-service';
 export class SearchResultPage {
 
   keyword: string = null;
-  requestParams: any = { key: '', page: 1, ungz: 1 };
+  requestParams: any = { key: '', page: 1, ungz: 1, server: '', category: '' };
   hasMore: boolean = false;
+
+  filterDic: any = null;
+  // serverCategories: any = {};
+
+  servers: any = [];
+
+  categories: any = [];
+
+  firstLoaded: boolean = false;
 
   dataList: any = [];
 
@@ -37,6 +46,35 @@ export class SearchResultPage {
     this.loadData();
   }
 
+  fetchData(ev): void {
+    // console.log(this.requestParams.order);
+    // console.log(this.requestParams.server);
+    // console.log(this.requestParams.category);
+    // if (!this.firstLoad) {
+      this.requestParams.page = 1;
+      this.loadData();
+    // }
+
+  }
+
+  prepareFilterData() {
+    let order = this.filterDic.param1;
+    let arr: any = [];
+    for (let i in order) {
+      arr.push(i);
+    }
+    this.servers = arr;
+    this.requestParams.server = arr[0];
+
+    order = this.filterDic.param2;
+    let arr2: any = [];
+    for (let i in order) {
+      arr2.push(i);
+    }
+    this.categories = arr2;
+    this.requestParams.category = arr2[0];
+  }
+
   loadData(): Promise<any> {
     if (this.requestParams.page === 1) {
       this.tool.showLoading('加载中...');
@@ -46,8 +84,18 @@ export class SearchResultPage {
 
         this.api.get('you/search.php', this.requestParams)
           .then(data => {
+            
+            console.log(data);
+
             if (this.requestParams.page === 1) {
               this.dataList = data.bookArr;
+
+              this.filterDic = data.filterDic;
+              
+              if (!this.firstLoaded) {
+                this.firstLoaded = true;
+                this.prepareFilterData();
+              }
             } else {
               let temp = this.dataList || [];
               this.dataList = temp.concat(data.bookArr);
