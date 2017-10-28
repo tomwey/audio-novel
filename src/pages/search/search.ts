@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service';
 import { ToolService } from '../../providers/tool-service';
+// import { Keyboard } from '@ionic-native/keyboard';
 
 /**
  * Generated class for the SearchPage page.
@@ -25,6 +26,8 @@ export class SearchPage {
               public navParams: NavParams,
               private api: ApiService,
               private tool: ToolService,
+              private app: App,
+              // private keyboard: Keyboard,
             ) {
   }
 
@@ -36,11 +39,18 @@ export class SearchPage {
   selectKeyword(kw): void {
     console.log(kw);
     this.keyword = kw;
+    
+    // this.keyboard.show();
   }
 
   startSearch(kw): void {
-    console.log(kw);
+    // console.log(kw);
+    this.app.getRootNavs()[0].push('SearchResultPage', { keyword: kw });
   }
+
+  // onCancel(ev) {
+
+  // }
 
   loadHotKeywords(): Promise<any> {
 

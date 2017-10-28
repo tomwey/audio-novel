@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CatalogPage page.
+  Generated template for the RecommendPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,38 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons start>
-      <button ion-button (click)="showRecommended()">推荐</button>
-    </ion-buttons>
-    <ion-title>分类</ion-title>
+    <ion-title>推荐</ion-title>
     <ion-buttons end>
       <button ion-button>播放中&nbsp;<ion-icon name="arrow-forward"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
-  <div class="dropdown-menu">
-      <ion-row>
-        <ion-col col-4>
-          <button ion-button clear small>
-              服务器4&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col col-4>
-          <button ion-button clear small>
-              都市传说&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col col-4>
-            <button ion-button clear small>
-                点击排行&nbsp;<ion-icon name="md-arrow-dropdown"></ion-icon>
-            </button>
-          </ion-col>
-      </ion-row>
-    </div>
+
 </ion-header>
 
-
 <ion-content>
-
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="ios-arrow-round-down-outline"
@@ -48,7 +25,6 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <!-- [virtualScroll]="catalogList" approxItemHeight="80px" -->
   <ion-list [virtualScroll]="catalogList" approxItemHeight="80px">
     <button ion-item *virtualItem="let item" (click)="gotoBook(item)">
       <ion-thumbnail item-left>
@@ -69,5 +45,3 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
-
-

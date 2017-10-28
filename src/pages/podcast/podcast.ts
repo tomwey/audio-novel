@@ -99,13 +99,13 @@ export class PodcastPage {
     if (item.href == null){
       item.href = item.chapterUrlArr[0]
     }
-    this.app.getRootNavs()[0].push('BrowserPage', { 
+    this.app.getRootNavs()[0].push('PodcastDetailPage', { 
       title: item.title,
       url: item.href});
   }
 
   showRecommended() {
-    
+    this.app.getRootNavs()[0].push('RecommendPage', { server: '推荐', category: '电台', order: '' });
   }
 
 }

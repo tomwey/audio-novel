@@ -13,7 +13,19 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="keyword" placeholder="搜索"></ion-searchbar>
+    <!-- <ion-searchbar [(ngModel)]="keyword" placeholder="搜索"></ion-searchbar> -->
+    <form action=".">
+      <ion-searchbar
+        [(ngModel)]="keyword"
+        [ngModelOptions]="{standalone: true}"
+        [showCancelButton]="true"
+        (search)="startSearch(keyword)"
+        placeholder="搜索"
+        [animated]="false"
+        name="search"
+      >
+      </ion-searchbar>
+  </form>
   </ion-toolbar>
   <div class="search-types">
     <ion-segment [(ngModel)]="searchType" color="light-gray">
@@ -42,6 +54,7 @@
     <ion-list *ngSwitchCase="'hot'">
         <ion-row class="keyword-row">
           <ion-col col-4 *ngFor="let item of hotKeywords">
+              <!-- <button ion-button (click)="selectKeyword(item)">{{item}}</button> -->
             <p tappable (tap)="selectKeyword(item)">{{item}}</p>
           </ion-col>
         </ion-row>
@@ -51,6 +64,7 @@
       <!-- <ion-item class="keyword-row"> -->
         <ion-row class="keyword-row">
             <ion-col col-4 *ngFor="let item of searchHistories">
+              <!-- <button ion-button (click)="selectKeyword(item)">{{item}}</button> -->
               <p tappable (tap)="selectKeyword(item)">{{item}}</p>
             </ion-col>
         </ion-row>
