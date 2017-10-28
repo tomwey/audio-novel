@@ -19,8 +19,16 @@ export class PodcastPage {
 
   dataList: any = [];
   hasMore: boolean = true;
+  filterDic: any = null;
+  serverCategories: any = {};
 
-  requestParams: any = { "openID":"e47d16be01ae009dbcdf696e62f9c1ecd5da4559", "page": 1, "ungz":1};
+  servers: any = [];
+
+  categories: any = [];
+
+  firstLoaded: boolean = false;
+
+  requestParams: any = { "openID":"e47d16be01ae009dbcdf696e62f9c1ecd5da4559", server: '', category: '', "page": 1, "ungz":1};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private podcasts: PodCastsService,
@@ -32,6 +40,24 @@ export class PodcastPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PodcastPage');
     this.loadData();
+  }
+
+  getCategories(server): void {
+    // console.log(this.serverCategories);
+
+    for (var key in this.serverCategories) {
+      // console.log(key);
+      // console.log(server);
+      if (key === server) {
+        // console.log(111);
+        this.categories = this.serverCategories[key];
+        // console.log(this.categories);
+        console.log(this.categories);
+        this.requestParams.category = this.categories[0];
+        // console.log(this.requestParams.category);
+        break;
+      }
+    }
   }
 
   loadData(): Promise<any> {
@@ -55,6 +81,14 @@ export class PodcastPage {
         });
         if (this.requestParams.page === 1) {
           this.dataList = data.bookArr;
+
+          this.filterDic = data.filterDic;
+          
+          if (!this.firstLoaded) {
+            this.firstLoaded = true;
+            this.prepareFilterData();
+          }
+          
         } else {
           let temp = this.dataList || [];
           this.dataList = temp.concat(data.bookArr);
@@ -75,6 +109,45 @@ export class PodcastPage {
         this.tool.hideLoading();
       });
     });
+  }
+
+  fetchData(ev): void {
+    // console.log(this.requestParams.order);
+    // console.log(this.requestParams.server);
+    // console.log(this.requestParams.category);
+    // if (!this.firstLoad) {
+      this.requestParams.page = 1;
+      this.loadData();
+    // }
+
+  }
+
+  prepareFilterData() {
+    // let order = this.filterDic.order;
+    // let arr: any = [];
+    // for (let i in order) {
+    //   arr.push(i);
+    // }
+    // this.orders = arr;
+    // this.requestParams.order = arr[0];
+
+    let serverCategory = this.filterDic.server_category;
+    let arr2 = [];
+    for (let server in serverCategory) {
+      arr2.push(server);
+      var arr3 = [];
+      let obj = serverCategory[server];
+
+      for (var key in obj['category']) {
+        arr3.push(key);
+      }
+
+      this.serverCategories[server] = arr3;
+    }
+
+    this.servers = arr2;
+    this.requestParams.server = arr2[0];
+    // this.getCategories(arr2[0]);
   }
 
   doRefresh(e): void {
