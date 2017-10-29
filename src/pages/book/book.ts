@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ToolService } from "../../providers/tool-service";
 import { ApiService } from "../../providers/api-service";
 /**
@@ -27,6 +27,7 @@ export class BookPage {
               public navParams: NavParams, 
               private api: ApiService,
               private tool: ToolService,
+              private app: App
     ) {
       this.bookItem = this.navParams.data;
       // console.log(this.bookItem);
@@ -97,6 +98,10 @@ export class BookPage {
       .catch(error => {
         this.tool.hideLoading();
       });
+  }
+
+  playAudio(item): void {
+    this.app.getRootNavs()[0].push('AudioplayerPage', {bookitem:this.bookItem, chapters: this.chapters, item: item});
   }
 
 }
