@@ -9,6 +9,8 @@ import { ToolService } from "../../providers/tool-service";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare let window;
+window.globalAudioTack;
 
 @IonicPage()
 @Component({
@@ -171,6 +173,9 @@ export class PodcastPage {
   gotoPodcast(item): void{
     if (item.href == null){
       item.href = item.chapterUrlArr[0]
+    }
+    if (window.globalAudioTack){
+      window.globalAudioTack.pause()
     }
     this.app.getRootNavs()[0].push('PodcastDetailPage', { 
       title: item.title,

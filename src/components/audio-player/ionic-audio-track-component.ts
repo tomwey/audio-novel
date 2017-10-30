@@ -59,7 +59,6 @@ export class AudioTrackComponent implements OnChanges, DoCheck {
   constructor(private _audioProvider: AudioProvider) {}
   
   ngOnInit() {
-    console.log("控件初始化中。。。。")
     if (!this.track) return;
 
     if (!(this.track instanceof WebAudioTrack) && !(this.track instanceof CordovaAudioTrack)) {
@@ -112,7 +111,39 @@ export class AudioTrackComponent implements OnChanges, DoCheck {
     this._audioTrack.changespeed()
   }
   
+  forward(){
+    let time = this._audioTrack.progress
+    time = time + 15
+    if (time > this._audioTrack.duration){
+      time = this._audioTrack.duration;
+    }
+    this._audioTrack.seekTo(time);  
+  }
   
+  rewind(){
+    let time = this._audioTrack.progress
+    time = time - 15
+    if (time < 0){
+      time = 0;
+    }
+    this._audioTrack.seekTo(time);  
+  }
+
+  playOrPauseAudio(){
+    if (this._audioProvider.current == undefined){
+      this.play()
+    }else{
+      this.pause()
+    }
+  }
+
+  changeVolume(){
+    if (this._audioTrack.volume >= 1){
+      this._audioTrack.volume = 0;
+    }
+    this._audioTrack.volume = this._audioTrack.volume + 0.2
+  }
+
   public get id() : number {
     return this._audioTrack ? this._audioTrack.id : -1;
   }

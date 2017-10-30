@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="btn-container">
-          <div class="custom-btn" tappable (tap)="changeAudioRate()">
+          <div class="custom-btn" tappable (tap)="audioTrack.changespeed()">
             <p class="icon-container">x1倍</p>
             <p class="label">语速</p>
           </div>
@@ -59,13 +59,13 @@
             </div>
           </div>
           <div class="btn-container">
-              <div class="custom-btn" tappable (tap)="changeVolume()">
+              <div class="custom-btn" tappable (tap)="audioTrack.changeVolume()">
                 <p class="icon-container"><ion-icon name="ios-volume-up-outline"></ion-icon></p>
                 <p class="label">音量</p>
               </div>
             </div>
             <div class="btn-container">
-                <div class="custom-btn" tappable (tap)="rewind()">
+                <div class="custom-btn" tappable (tap)="audioTrack.rewind()">
                   <p class="icon-container"><ion-icon class="rewind-icon" name="ios-rewind-outline"></ion-icon></p>
                   <p class="label">快退</p>
                 </div>
@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <div class="btn-container">
-                    <div class="custom-btn" tappable (tap)="playOrPauseAudio()">
+                    <div class="custom-btn" tappable (tap)="audioTrack.playOrPauseAudio()">
                       <p class="icon-container"><ion-icon class="play-icon" name="ios-play-outline"></ion-icon></p>
                       <p class="label">播放/暂停</p>
                     </div>
@@ -89,7 +89,7 @@
                       </div>
                     </div>
                     <div class="btn-container">
-                      <div class="custom-btn" tappable (tap)="forward()">
+                      <div class="custom-btn" tappable (tap)="audioTrack.forward()">
                         <p class="icon-container"><ion-icon class="forward-icon" name="ios-fastforward-outline"></ion-icon></p>
                         <p class="label">快进</p>
                       </div>

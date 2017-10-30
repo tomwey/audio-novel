@@ -9,6 +9,8 @@ import { ToolService } from '../../providers/tool-service';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare let window;
+window.globalAudioTack;
 
 @IonicPage()
 @Component({
@@ -20,6 +22,7 @@ export class AudioplayerPage {
   currentTrack: ITrackConstraint;
   bookdatas: any = [];
   paramData :any;
+  currentIndex:number;
   requestParams: any = { 
       openID:"e47d16be01ae009dbcdf696e62f9c1ecd5da4559",//设备唯一标识，可随意填一个
       isPlay : "1",
@@ -36,22 +39,28 @@ export class AudioplayerPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,  private api: ApiService,
     private tool: ToolService,) {
     this.paramData = this.navParams.data;
-      console.log(this.paramData);
+    this.currentIndex = this.paramData.chapters.indexOf(this.paramData.item) 
+    console.log(this.paramData);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AudioplayerPage');
+    console.log(window.globalAudioTack)
+    this.parseParam()
+    this.loadAudioData()
+    console.log("加载数据！！！");
+  }
+
+  parseParam(){
+    let item = this.paramData.chapters[this.currentIndex]
     this.requestParams.ID = this.paramData.bookitem.ID;
     this.requestParams.openID = this.paramData.bookitem.openID;
     this.requestParams.chapterjs = this.paramData.bookitem.chapterjs;
     this.requestParams.title = this.paramData.bookitem.title;
-    this.requestParams.chapterID = this.paramData.item.chapterID;
-    this.requestParams.chapterTitle = this.paramData.item.chapterTitle;
-    this.requestParams.chapterHref = this.paramData.bookitem.chapterpre + this.paramData.item.chapterHref;
-    this.requestParams.chapterServer = this.paramData.item.chapterServer;
-    
-    this.loadAudioData()
-    console.log("加载数据！！！");
+    this.requestParams.chapterID = item.chapterID;
+    this.requestParams.chapterTitle = item.chapterTitle;
+    this.requestParams.chapterHref = this.paramData.bookitem.chapterpre + item.chapterHref;
+    this.requestParams.chapterServer = item.chapterServer;
   }
 
   loadAudioData(): Promise<any> {
@@ -90,52 +99,34 @@ export class AudioplayerPage {
     
   }
 
-  // 设置语速
-  changeAudioRate(): void 
-  {
-    
-  }
-
   // 打开设置
   openSettings(): void 
   {
     
-  }
-
-  // 调整音量
-  changeVolume(): void 
-  {
-    
-  }
-   
-  // 快退15秒
-  rewind(): void 
-  {
-    
-  }
+  } 
 
   // 上一曲
   gotoPrev(): void 
   {
-    
-  }
-
-  // 播放或暂停
-  playOrPauseAudio(): void 
-  {
-    
+    if (this.currentIndex > 0)
+    { 
+      this.currentIndex = this.currentIndex - 1;
+      this.parseParam()
+      this.loadAudioData()
+    }
   }
 
   // 下一曲
   gotoNext(): void 
   {
-    
-  }
-
-  // 快进15秒
-  forward(): void 
-  {
-    
+    console.log("-------------------"+this.currentIndex)
+    if (this.currentIndex < this.paramData.chapters.length - 1)
+    { 
+      this.currentIndex = this.currentIndex + 1;
+      this.parseParam()
+      this.loadAudioData()
+      
+    }
   }
 
 }
