@@ -1,3 +1,61 @@
 page-audioplayer {
+    .book-info {
+        margin-top: -40px;
+        text-align: center;
+        padding: 15px;
 
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .btn-container {
+        width: 20%;
+        float: left;
+        text-align: center;
+        // height: 80px;
+        .custom-btn {
+            width: 100%;
+            text-align: center;
+
+            .icon-container {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 14px;
+                border-radius: 50%;
+                border: 0.8px solid rgb(74,74,74);
+                margin: 0 auto;
+                color: rgb(74,74,74);
+
+                ion-icon {
+                    font-size: 20px;
+                    display: block;
+                    width: 100%;
+                    // height: 100%;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .rewind-icon {
+                    padding-right: 3px;
+                }
+
+                .forward-icon {
+                    padding-left: 3px;
+                }
+
+                .play-icon {
+                    padding-left: 3px;
+                }
+            }
+            .label {
+                margin: 0;
+                margin-top: 5px;
+            }
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
 }

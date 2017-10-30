@@ -32,7 +32,7 @@ export class AudioplayerPage {
       ID : "41f33a237e4af3435ba53c3d308a8cdf",
       ungz: 1
   };
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams,  private api: ApiService,
     private tool: ToolService,) {
     this.paramData = this.navParams.data;
@@ -47,7 +47,7 @@ export class AudioplayerPage {
     this.requestParams.title = this.paramData.bookitem.title;
     this.requestParams.chapterID = this.paramData.item.chapterID;
     this.requestParams.chapterTitle = this.paramData.item.chapterTitle;
-    this.requestParams.chapterHref = this.paramData.item.chapterHref;
+    this.requestParams.chapterHref = this.paramData.bookitem.chapterpre + this.paramData.item.chapterHref;
     this.requestParams.chapterServer = this.paramData.item.chapterServer;
     
     this.loadAudioData()
@@ -63,7 +63,7 @@ export class AudioplayerPage {
           console.log(data);
           
           this.currentTrack = {
-            src: "http://m128.xiami.net/812/634530812/2100366979/1776261604_60412020_l.mp3?auth_key=1509850800-0-0-8e75598b315ad6bd2d35bb4a6ef8831d",//data.chapterSrcArr[0],
+            src: data.chapterSrcArr[0],
             artist: data.title,
             title: data.chapterTitle,
             art: this.paramData.bookitem.src,
@@ -76,6 +76,66 @@ export class AudioplayerPage {
           resolve(false);
         })
     }));
+  }
+
+  // 添加书签
+  addBookmark(): void 
+  {
+
+  }
+
+  // 打开章节
+  openChapters(): void 
+  {
+    
+  }
+
+  // 设置语速
+  changeAudioRate(): void 
+  {
+    
+  }
+
+  // 打开设置
+  openSettings(): void 
+  {
+    
+  }
+
+  // 调整音量
+  changeVolume(): void 
+  {
+    
+  }
+   
+  // 快退15秒
+  rewind(): void 
+  {
+    
+  }
+
+  // 上一曲
+  gotoPrev(): void 
+  {
+    
+  }
+
+  // 播放或暂停
+  playOrPauseAudio(): void 
+  {
+    
+  }
+
+  // 下一曲
+  gotoNext(): void 
+  {
+    
+  }
+
+  // 快进15秒
+  forward(): void 
+  {
+    
   }
 
 }

@@ -45,7 +45,7 @@
 
 <ion-content>
 
-  <ion-list [hidden]="dataType !== 'chapter'" [virtualScroll]="chapters">
+  <ion-list [hidden]="dataType !== 'chapter'" [virtualScroll]="chapters" approxItemHeight="50px">
     <button ion-item *virtualItem="let item" (click) = "playAudio(item)">
         <h2>{{item.chapterTitle}}</h2>
         <ion-note item-right>
