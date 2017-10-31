@@ -7,14 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>播放</ion-title>
+    <ion-title>{{requestParams.chapterTitle}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
   <div padding>
-      <audio-track #audioTrack [track]="currentTrack" [autoplay]="true">
+      <audio-track #audioTrack [track]="currentTrack" [autoplay]="false">
           <div style="display: flex">
             <audio-track-progress-bar duration progress [audioTrack]="audioTrack" style="width: 100%; margin: 0 10px"></audio-track-progress-bar>
           </div>

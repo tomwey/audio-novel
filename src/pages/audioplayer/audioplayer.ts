@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ITrackConstraint } from '../../components/audio-player/ionic-audio-interfaces';
 import { ApiService } from '../../providers/api-service';
 import { ToolService } from '../../providers/tool-service';
+// import { WebAudioTrack } from '../../components/audio-player/ionic-audio-web-track';
 /**
  * Generated class for the AudioplayerPage page.
  *
@@ -18,7 +19,6 @@ window.globalAudioTack;
   templateUrl: 'audioplayer.html',
 })
 export class AudioplayerPage {
-
   currentTrack: ITrackConstraint;
   bookdatas: any = [];
   paramData :any;
@@ -78,6 +78,7 @@ export class AudioplayerPage {
             art: this.paramData.bookitem.src,
             preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
           }
+          
           resolve(true);
         })
         .catch(error => {
