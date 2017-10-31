@@ -197,6 +197,28 @@ export class WebAudioTrack implements IAudioTrack {
   }
   
   /**
+   * get current volume (volume)
+   * 
+   * @property volume
+   * 
+   * @type {number}
+   */
+  public get volume() : number{
+    return this.audio.volume;
+  }
+
+  /**
+   * set current volume (volume)
+   * 
+   * @property volume
+   * 
+   * @type {number}
+   */
+  public set volume(v) {
+    this.audio.volume = v;
+  }
+
+  /**
    * Plays current track
    * 
    * @method play
@@ -271,7 +293,7 @@ export class WebAudioTrack implements IAudioTrack {
   changespeed() {
     let currate = this.audio.playbackRate;
     currate = currate + 0.5;
-    if (currate >= 2.0) {
+    if (currate > 2.0) {
       currate = 0.5;
     }
     this.audio.playbackRate = currate;

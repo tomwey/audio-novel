@@ -52,6 +52,7 @@ export interface IAudioTrack extends ITrackConstraint {
   canPlay:  boolean;
   error: MediaError;
   speed:number;
+  volume : number;
   
   play();
   pause();

@@ -202,6 +202,28 @@ export class CordovaAudioTrack implements IAudioTrack {
   public get speed() : number {
     return 1;
   }
+
+  /**
+   * get current volume (volume)
+   * 
+   * @property volume
+   * 
+   * @type {number}
+   */
+  public get volume() : number{
+    return this.audio.volume;
+  }
+
+  /**
+   * set current volume (volume)
+   * 
+   * @property volume
+   * 
+   * @type {number}
+   */
+  public set volume(v) {
+    this.audio.volume = v;
+  }
   
   /**
  * Plays current track
