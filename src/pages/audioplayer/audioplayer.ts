@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ITrackConstraint } from '../../components/audio-player/ionic-audio-interfaces';
 import { ApiService } from '../../providers/api-service';
 import { ToolService } from '../../providers/tool-service';
@@ -37,7 +37,7 @@ export class AudioplayerPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private api: ApiService,
-    private tool: ToolService,) {
+    private tool: ToolService,private app: App) {
     this.paramData = this.navParams.data;
     this.currentIndex = this.paramData.chapters.indexOf(this.paramData.item) 
     console.log(this.paramData);
@@ -96,13 +96,13 @@ export class AudioplayerPage {
   // 打开章节
   openChapters(): void 
   {
-    
+    this.app.getRootNavs()[0].pop();
   }
 
   // 打开设置
   openSettings(): void 
   {
-    
+    this.app.getRootNavs()[0].push('SettingPage', { flag: 1 });
   } 
 
   // 上一曲

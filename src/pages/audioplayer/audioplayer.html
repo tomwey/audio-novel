@@ -48,7 +48,7 @@
       </div>
       <div class="btn-container">
           <div class="custom-btn" tappable (tap)="audioTrack.changespeed()">
-            <p class="icon-container">x1倍</p>
+            <p class="icon-container">x{{audioTrack.speed}}倍</p>
             <p class="label">语速</p>
           </div>
         </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="btn-container">
                     <div class="custom-btn" tappable (tap)="audioTrack.playOrPauseAudio()">
-                      <p class="icon-container"><ion-icon class="play-icon" name="ios-play-outline"></ion-icon></p>
+                      <p class="icon-container"><ion-icon [class.play-icon]="!audioTrack.isPlaying" name="{{audioTrack.isPlaying ? 'ios-pause-outline' : 'ios-play-outline'}}"></ion-icon></p>
                       <p class="label">播放/暂停</p>
                     </div>
                   </div>
