@@ -25,6 +25,10 @@ page-audioplayer {
                 text-align: center;
                 font-size: 10px;
                 border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                
                 border: 0.8px solid rgb(74,74,74);
                 margin: 0 auto;
                 color: rgb(74,74,74);
