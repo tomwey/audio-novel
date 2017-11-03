@@ -31,7 +31,8 @@
   </div>
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
+  <div class="buttons">
+  <!-- <ion-toolbar> -->
     <div class="btn-container">
       <div class="custom-btn" tappable (tap)="addBookmark()">
         <p class="icon-container">
@@ -41,59 +42,61 @@
       </div>
     </div>
     <div class="btn-container">
-        <div class="custom-btn" tappable (tap)="openChapters()">
-          <p class="icon-container"><ion-icon name="ios-menu-outline"></ion-icon></p>
-          <p class="label">章节</p>
-        </div>
+      <div class="custom-btn" tappable (tap)="openChapters()">
+        <p class="icon-container"><ion-icon name="ios-menu-outline"></ion-icon></p>
+        <p class="label">章节</p>
       </div>
-      <div class="btn-container">
-          <div class="custom-btn" tappable (tap)="audioTrack.changespeed()">
-            <p class="icon-container">x{{audioTrack.speed}}倍</p>
-            <p class="label">语速</p>
-          </div>
-        </div>
-        <div class="btn-container">
-            <div class="custom-btn" tappable (tap)="openSettings()">
-              <p class="icon-container"><ion-icon name="ios-settings-outline"></ion-icon></p>
-              <p class="label">设置</p>
-            </div>
-          </div>
-          <div class="btn-container">
-              <div class="custom-btn" tappable (tap)="audioTrack.changeVolume()">
-                <p class="icon-container"><ion-icon name="ios-volume-up-outline"></ion-icon></p>
-                <p class="label">音量</p>
-              </div>
-            </div>
-            <div class="btn-container">
-                <div class="custom-btn" tappable (tap)="audioTrack.rewind()">
-                  <p class="icon-container"><ion-icon class="rewind-icon" name="ios-rewind-outline"></ion-icon></p>
-                  <p class="label">快退</p>
-                </div>
-              </div>
-              <div class="btn-container">
-                  <div class="custom-btn" tappable (tap)="gotoPrev()">
-                    <p class="icon-container"><ion-icon name="ios-skip-backward-outline"></ion-icon></p>
-                    <p class="label">上一曲</p>
-                  </div>
-                </div>
-                <div class="btn-container">
-                    <div class="custom-btn" tappable (tap)="audioTrack.playOrPauseAudio()">
-                      <p class="icon-container"><ion-icon [class.play-icon]="!audioTrack.isPlaying" name="{{audioTrack.isPlaying ? 'ios-pause-outline' : 'ios-play-outline'}}"></ion-icon></p>
-                      <p class="label">播放/暂停</p>
-                    </div>
-                  </div>
-                  <div class="btn-container">
-                      <div class="custom-btn" tappable (tap)="gotoNext()">
-                        <p class="icon-container"><ion-icon name="ios-skip-forward-outline"></ion-icon></p>
-                        <p class="label">下一曲</p>
-                      </div>
-                    </div>
-                    <div class="btn-container">
-                      <div class="custom-btn" tappable (tap)="audioTrack.forward()">
-                        <p class="icon-container"><ion-icon class="forward-icon" name="ios-fastforward-outline"></ion-icon></p>
-                        <p class="label">快进</p>
-                      </div>
-                    </div>
-  </ion-toolbar>
-      
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="audioTrack.changespeed()">
+        <p class="icon-container">x{{audioTrack.speed}}倍</p>
+        <p class="label">语速</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="openSettings()">
+        <p class="icon-container"><ion-icon name="ios-settings-outline"></ion-icon></p>
+        <p class="label">设置</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="audioTrack.changeVolume()">
+        <p class="icon-container"><ion-icon name="ios-volume-up-outline"></ion-icon></p>
+        <p class="label">音量</p>
+      </div>
+    </div>
+  <!-- </ion-toolbar> -->
+  <!-- <ion-toolbar> -->
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="audioTrack.rewind()">
+        <p class="icon-container"><ion-icon class="rewind-icon" name="ios-rewind-outline"></ion-icon></p>
+        <p class="label">快退</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="gotoPrev()">
+        <p class="icon-container"><ion-icon name="ios-skip-backward-outline"></ion-icon></p>
+        <p class="label">上一曲</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="audioTrack.playOrPauseAudio()">
+        <p class="icon-container"><ion-icon [class.play-icon]="!audioTrack.isPlaying" name="{{audioTrack.isPlaying ? 'ios-pause-outline' : 'ios-play-outline'}}"></ion-icon></p>
+        <p class="label">播放/暂停</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="gotoNext()">
+        <p class="icon-container"><ion-icon name="ios-skip-forward-outline"></ion-icon></p>
+        <p class="label">下一曲</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <div class="custom-btn" tappable (tap)="audioTrack.forward()">
+        <p class="icon-container"><ion-icon class="forward-icon" name="ios-fastforward-outline"></ion-icon></p>
+        <p class="label">快进</p>
+      </div>
+    </div>
+  <!-- </ion-toolbar> -->
+</div>
 </ion-footer>

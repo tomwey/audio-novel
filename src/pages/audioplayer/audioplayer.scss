@@ -9,6 +9,17 @@ page-audioplayer {
         }
     }
 
+    .buttons {
+        clear: both;
+        // height: 150px;
+        border-top: 1px solid rgb(227,227,227);
+        // height: 150px;
+    }
+    ion-footer {
+        background-color: white;
+        // height: 150px;
+        clear: both;
+    }
     .btn-container {
         width: 20%;
         float: left;
