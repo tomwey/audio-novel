@@ -82,7 +82,7 @@ export class SearchResultPage {
 
     return new Promise((resolve, reject) => {
 
-        this.api.get('you/search.php', this.requestParams)
+        this.api.get('search.php', this.requestParams)
           .then(data => {
             
             console.log(data);

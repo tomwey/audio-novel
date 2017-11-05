@@ -19,7 +19,7 @@ export class PodCastsService {
   }
 
   getCategories(params): Promise<any> {
-    return this.api.get('you/getRadioCategory.php', params);
+    return this.api.get('getRadioCategory.php', params);
   }
 
   getBooks(): Promise<any> {

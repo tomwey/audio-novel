@@ -60,7 +60,7 @@ export class BookPage {
   loadOtherResources(): void {
     this.tool.showLoading('加载中...');
 
-    this.api.get('you/getSource.php', this.bookItem)
+    this.api.get('getSource.php', this.bookItem)
       .then(data => {
         // console.log(data);
         this.otherSources = data.sourceArr;
@@ -78,7 +78,7 @@ export class BookPage {
     this.bookItem.openID = '187cc0fff2b361dce805e8b0c11c7fedc30a8034';
     this.bookItem.ungz = 1;
     
-    this.api.get('you/getBook.php', this.bookItem)
+    this.api.get('getBook.php', this.bookItem)
       .then(data => {
         console.log(data);
         this.chapters = data.partArr[0].chapterArr;

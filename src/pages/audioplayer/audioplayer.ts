@@ -66,7 +66,7 @@ export class AudioplayerPage {
   loadAudioData(): Promise<any> {
     return new Promise((resolve => {
       this.tool.showLoading('加载中...');
-      this.api.get('you/getChapter.php', this.requestParams)
+      this.api.get('getChapter.php', this.requestParams)
         .then(data => {
           this.tool.hideLoading();
           console.log(data);

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { Constants } from './constants';
 // import { ToolService } from './tool-service';
 // import { Md5 } from 'ts-md5/dist/md5';
 
@@ -11,9 +12,10 @@ import 'rxjs/add/operator/toPromise';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
 // 正式服务器和账号
 const API_HOST: string = "http://118.190.76.61";//"http://14.33.133.79";
-const API_KEY:  string = "3bde7fa81ca14a5d9f829bcae9c72c67";
+const API_KEY:  string = "";
 
 // 测试账号和测试服务器
 // const API_HOST: string = "http://10.19.0.121:3000/api/v1";
@@ -30,7 +32,7 @@ export class ApiService {
 
   // 处理GET请求
   get(uri, params) {
-    let url = API_HOST + '/' + uri;
+    let url = this.getAPIHost() + '/' + uri;
 
     // 获取时间戳
     // let i = new Date().getTime();
@@ -59,7 +61,7 @@ export class ApiService {
 
   // 处理POST请求
   post(uri, params) {
-    let url = API_HOST + '/' + uri;
+    let url = this.getAPIHost() + '/' + uri;
 
     // // 参数签名
     // params.sign = ApiService.signParams(params);
@@ -83,7 +85,7 @@ export class ApiService {
 
   // 上传文件
   upload(uri, body: FormData) {
-      let url = API_HOST + '/' + uri;
+      let url = this.getAPIHost() + '/' + uri;
 
       // 组装参数
       let i  = new Date().getTime();
@@ -101,7 +103,7 @@ export class ApiService {
 
   // FormData提交
   post2(uri, body: FormData) {
-    let url = API_HOST + '/' + uri;
+    let url = this.getAPIHost() + '/' + uri;
 
       // 组装参数
       let i  = new Date().getTime();
@@ -171,6 +173,15 @@ export class ApiService {
     // this.tool.hideLoading();
 
     return Promise.reject(errMsg);
-  } // end handle error 
+  } // end handle error
+  
+  private getAPIHost(): string {
+    if (Constants.APP_TYPE === 1) {
+      return API_HOST + '/you';
+    } else if (Constants.APP_TYPE === 2) {
+      return 'http://14.33.133.79' + '/xiao';
+    }
+    return null;
+  }
 
 }

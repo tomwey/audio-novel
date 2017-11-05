@@ -56,7 +56,7 @@ export class SearchPage {
 
     return new Promise((resolve => {
       this.tool.showLoading('加载中...');
-      this.api.get('you/getHotKey.php', {ungz: 1})
+      this.api.get('getHotKey.php', {ungz: 1})
         .then(data => {
           this.tool.hideLoading();
           console.log(data);

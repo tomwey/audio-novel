@@ -19,7 +19,7 @@ export class BooksService {
   }
 
   getCategories(params): Promise<any> {
-    return this.api.get('you/getCategory.php', params);
+    return this.api.get('getCategory.php', params);
   }
 
   getBooks(): Promise<any> {
